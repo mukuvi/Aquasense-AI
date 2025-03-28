@@ -199,13 +199,13 @@ const ProfileScreen = () => {
                       style={styles.optionButton}
                       onPress={() => handleDelete(publication.id)}
                     >
-                      <Text style={styles.optionText}>Supprimer</Text>
+                      <Text style={styles.optionText}>Delete</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       style={styles.optionButton}
                       onPress={() => handleEdit()}
                     >
-                      <Text style={styles.optionText}>Modifier</Text>
+                      <Text style={styles.optionText}>Edit</Text>
                     </TouchableOpacity>
                   </View>
                 )}
