@@ -274,7 +274,7 @@ function Comment() {
           style={styles.input}
           value={newComment}
           onChangeText={setNewComment}
-          placeholder="Ajouter un commentaire"
+          placeholder="Add a comment"
         />
 
         <TouchableOpacity onPress={() => handleAddComment()}>
