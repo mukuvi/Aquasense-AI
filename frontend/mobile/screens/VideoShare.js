@@ -103,7 +103,7 @@ export default function Chat({ title }) {
   };
 
   const handleShare = async () => {
-    // Votre code pour partager reste inchangé
+    //  Your code for sharing remains unchanged
   };
 
   return (
