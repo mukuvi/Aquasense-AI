@@ -154,7 +154,7 @@ const SearchScreen = () => {
   };
 
   const renderUserItem = ({ item, index }) => {
-    // Ne rend que les trois premiers utilisateurs par défaut
+    // Only render the first three users by default
     if (index < 3 || showAllUsers) {
       return (
         <TouchableOpacity
@@ -172,13 +172,13 @@ const SearchScreen = () => {
               onPress={() => handleSendMessage(item.id)}
             >
               <Ionicons name="chatbubbles" size={16} color="white" />
-              <Text style={styles.messageButtonText}>Envoyer un message</Text>
+              <Text style={styles.messageButtonText}>Send a message</Text>
             </TouchableOpacity>
           </View>
         </TouchableOpacity>
       );
     }
-    return null; // Renvoie null pour ne pas afficher d'autres utilisateurs par défaut
+    return null; // Returns null to not display other users by default
   };
 
   const renderPublicationItem = ({ item }) => (
