@@ -86,7 +86,7 @@ const SearchScreen = () => {
         }
       } catch (error) {
         console.error(
-          "Erreur lors de la récupération de l'ID utilisateur depuis AsyncStorage:",
+          "Error while retrieving the user ID from AsyncStorage:",
           error
         );
       }
