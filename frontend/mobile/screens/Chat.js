@@ -51,7 +51,7 @@ const Chat = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.postButton} onPress={handlePost}>
-        <Text style={styles.postButtonText}>Poster</Text>
+        <Text style={styles.postButtonText}>Post</Text>
       </TouchableOpacity>
       {showIcons && (
         <View style={styles.iconsContainer}>
