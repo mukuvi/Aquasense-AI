@@ -260,7 +260,7 @@ const SearchScreen = () => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Recherchez une personne..."
+          placeholder="Search for a person..."
           value={searchText}
           onChangeText={handleSearch}
         />
