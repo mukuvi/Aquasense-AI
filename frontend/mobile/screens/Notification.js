@@ -28,10 +28,7 @@ function NavBar({ activeTab, onChangeTab }) {
           setUserId(parseInt(id));
         }
       } catch (error) {
-        console.error(
-          "Erreur lors de la récupération de l'ID utilisateur depuis AsyncStorage:",
-          error
-        );
+        console.error("Error retrieving user ID from AsyncStorage:", error);
       }
     };
 
@@ -40,14 +37,14 @@ function NavBar({ activeTab, onChangeTab }) {
 
   const handleLogout = () => {
     Alert.alert(
-      "Déconnexion",
-      "Êtes-vous sûr de vouloir vous déconnecter?",
+      "Logout",
+      "Are you sure you want to log out?",
       [
         {
-          text: "Non",
+          text: "No",
           style: "cancel",
         },
-        { text: "Oui", onPress: () => ConfirmLogout() },
+        { text: "Yes", onPress: () => ConfirmLogout() },
       ],
       { cancelable: false }
     );
@@ -68,7 +65,7 @@ function NavBar({ activeTab, onChangeTab }) {
       await AsyncStorage.removeItem("userData");
       navigation.navigate("Welcome");
     } catch (error) {
-      console.error("Erreur lors du chargement des données :", error);
+      console.error("Error loading data:", error);
     }
   };
 
