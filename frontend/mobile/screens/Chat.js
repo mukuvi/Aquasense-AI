@@ -25,26 +25,27 @@ const Chat = () => {
   const requestMediaLibraryPermission = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== "granted") {
-      alert("Permission refusée pour accéder à la bibliothèque de médias.");
+      alert("Permission denied to access the media library.");
     }
   };
 
   const handleSearch = () => {
-    console.log("Recherche : ", searchText);
+    console.log("Search: ", searchText);
   };
 
   const handlePost = () => {
     setShowIcons(!showIcons);
   };
   const handleVideoIconPress = () => {
-    navigation.navigate("VideoShare"); // Naviguer vers VideoShare
+    navigation.navigate("VideoShare"); // Navigate to VideoShare
   };
+
   const handleImageIconPress = () => {
-    navigation.navigate("PhotoShare"); // Naviguer vers PhotoShare
+    navigation.navigate("PhotoShare"); // Navigate to PhotoShare
   };
 
   const handleFileIconPress = async () => {
-    navigation.navigate("FileShare"); // Naviguer vers FileShare
+    navigation.navigate("FileShare"); // Navigate to FileShare
   };
 
   return (
