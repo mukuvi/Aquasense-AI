@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.aquasense.app"
     },
     "android": {
       "adaptiveIcon": {
@@ -26,12 +27,11 @@
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE"
-      ]
+      ],
+      "package": "com.aquasense.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     }
-   
-    
   }
 }

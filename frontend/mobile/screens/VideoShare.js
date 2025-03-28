@@ -1,19 +1,36 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Image, TextInput, StyleSheet, Alert } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import * as ImagePicker from 'expo-image-picker';
-import { Video } from 'expo-av'; // Importez le composant Video d'expo-av
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+  TextInput,
+  StyleSheet,
+  Alert,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
+import { Video } from "expo-av"; //  Import the Video component from expo-av
 
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5 } from "@expo/vector-icons";
 
-const Publication = ({ title, content, contentType, likes, shares, downloads, comments }) => {
+const Publication = ({
+  title,
+  content,
+  contentType,
+  likes,
+  shares,
+  downloads,
+  comments,
+}) => {
   const renderContent = () => {
-    if (contentType === 'image') {
+    if (contentType === "image") {
       return <Image source={content} style={styles.contentImage} />;
-    } else if (contentType === 'video') { // Ajout de la condition pour afficher la vidéo
+    } else if (contentType === "video") {
+      // Added condition to display the video
       return (
         <View style={styles.contentContainer}>
-         
           <Text style={styles.contentText}>{title}</Text>
         </View>
       );
@@ -50,27 +67,28 @@ const Publication = ({ title, content, contentType, likes, shares, downloads, co
       </View>
     </View>
   );
-}
+};
 
 export default function Chat({ title }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [publications, setPublications] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [newPublicationTitle, setNewPublicationTitle] = useState('');
+  const [newPublicationTitle, setNewPublicationTitle] = useState("");
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const handleSelectNewPhoto = async () => {
-    // Votre code pour sélectionner une image reste inchangé
+    //Your code for selecting an image remains unchanged
   };
 
   const handleSelectNewVideo = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Videos, // Spécifiez les vidéos au lieu des images
+        mediaTypes: ImagePicker.MediaTypeOptions.Videos, // Specify videos instead of images
+
         allowsEditing: true,
         aspect: [16, 9],
         quality: 1,
@@ -80,7 +98,7 @@ export default function Chat({ title }) {
         setSelectedFile(result.uri);
       }
     } catch (error) {
-      console.error('Erreur lors de la sélection de la vidéo :', error);
+      console.error("Erreur lors de la sélection de la vidéo :", error);
     }
   };
 
@@ -90,9 +108,7 @@ export default function Chat({ title }) {
 
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollView}>
-        
-      </ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollView}></ScrollView>
     </View>
   );
 }
@@ -100,11 +116,11 @@ export default function Chat({ title }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
+    backgroundColor: "white",
+    alignItems: "center",
   },
   menuButton: {
-    position: 'absolute',
+    position: "absolute",
     top: 20,
     right: 20,
     zIndex: 1,
@@ -112,14 +128,14 @@ const styles = StyleSheet.create({
   menu: {
     ...StyleSheet.absoluteFillObject,
     top: 60,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 10,
     padding: 10,
     zIndex: 1,
   },
   menuItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginVertical: 5,
   },
   menuText: {
@@ -127,10 +143,10 @@ const styles = StyleSheet.create({
   },
   publicationContainer: {
     marginVertical: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   contentContainer: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   contentVideo: {
     width: 300,
@@ -144,85 +160,85 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginTop: 10,
   },
   reactionContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
     marginTop: 10,
   },
   reactionContainer: {
-   flexDirection: 'row',
-   alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   selectedImageContainer: {
-   alignItems: 'center',
-   marginTop: 20,
+    alignItems: "center",
+    marginTop: 20,
   },
   selectedImage: {
-   width: 200,
-   height: 200,
-   resizeMode: 'cover',
-   marginBottom: 20,
+    width: 200,
+    height: 200,
+    resizeMode: "cover",
+    marginBottom: 20,
   },
   selectPhotoButton: {
-   flexDirection: 'row',
-   alignItems: 'center',
-   justifyContent: 'center',
-   backgroundColor: 'green',
-   borderRadius: 8,
-   paddingVertical: 10,
-   paddingHorizontal: 20,
-   width: '30%',
-   marginTop: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "green",
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    width: "30%",
+    marginTop: 20,
   },
   selectPhotoButtonText: {
-   color: 'white',
-   fontSize: 16,
-   marginLeft: 10,
+    color: "white",
+    fontSize: 16,
+    marginLeft: 10,
   },
   selectFileButton: {
-   flexDirection: 'row',
-   alignItems: 'center',
-   justifyContent: 'center',
-   backgroundColor: '#6B0AB8',
-   borderRadius: 8,
-   paddingVertical: 10,
-   paddingHorizontal: 20,
-   width: '30%',
-   marginTop:10,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#6B0AB8",
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    width: "30%",
+    marginTop: 10,
   },
   selectFileButtonText: {
-   color: 'white',
-   fontSize: 16,
-   marginLeft: 10,
+    color: "white",
+    fontSize: 16,
+    marginLeft: 10,
   },
   titleInput: {
-   borderWidth: 1,
-   borderColor: '#FBFBFB',
-   borderRadius: 8,
-   padding: 10,
-   width: '40%',
-   marginTop: -40,
-   marginLeft: 110,
-   backgroundColor: '#F0F0F0',
-   fontSize: 16,
-   color: 'black',
+    borderWidth: 1,
+    borderColor: "#FBFBFB",
+    borderRadius: 8,
+    padding: 10,
+    width: "40%",
+    marginTop: -40,
+    marginLeft: 110,
+    backgroundColor: "#F0F0F0",
+    fontSize: 16,
+    color: "black",
   },
   shareButton: {
-   backgroundColor: '#FF084B',
-   padding: 12,
-   borderRadius: 8,
-   marginTop: -45,
-   alignSelf: 'center',
-   color: 'white',
-   marginLeft: 250,
+    backgroundColor: "#FF084B",
+    padding: 12,
+    borderRadius: 8,
+    marginTop: -45,
+    alignSelf: "center",
+    color: "white",
+    marginLeft: 250,
   },
   shareButtonText: {
-   color: 'white',
-   fontSize: 16,
-   fontWeight: 'bold',
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
