@@ -307,10 +307,10 @@ const SearchScreen = () => {
             renderItem={renderPublicationItem}
             keyExtractor={(item) => item.id_partage.toString()}
             ListHeaderComponent={
-              <Text style={styles.sectionHeader}>Publications</Text>
+              <Text style={styles.sectionHeader}>Posts</Text>
             }
             ListEmptyComponent={
-              <Text style={styles.emptyText}>Aucune publication trouvée</Text>
+              <Text style={styles.emptyText}>No posts found</Text>
             }
           />
         </>
