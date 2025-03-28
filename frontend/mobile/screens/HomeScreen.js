@@ -1,26 +1,34 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons';
-import * as ImagePicker from 'expo-image-picker';
-import * as Location from 'expo-location';
-import NavBar from './navBar';
+import React, { useState } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Alert,
+  ActivityIndicator,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
+import * as Location from "expo-location";
+import NavBar from "./navBar";
 
 function HomeScreen() {
   const navigation = useNavigation();
   const [pickedImage, setPickedImage] = useState(null);
-  const [label, setLabel] = useState('');
+  const [label, setLabel] = useState("");
   const [location, setLocation] = useState(null);
   const [loading, setLoading] = useState(false);
   const [pressed, setPressed] = useState(false);
 
   const verifyPermissions = async () => {
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
-    if (status !== 'granted') {
+    if (status !== "granted") {
       Alert.alert(
-        'Insufficient permissions!',
-        'You need to grant camera permissions to use this feature.',
-        [{ text: 'Okay' }]
+        "Insufficient permissions!",
+        "You need to grant camera permissions to use this feature.",
+        [{ text: "Okay" }]
       );
       return false;
     }
@@ -29,11 +37,11 @@ function HomeScreen() {
 
   const getLocation = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== 'granted') {
+    if (status !== "granted") {
       Alert.alert(
-        'Insufficient permissions!',
-        'You need to grant location permissions to use this feature.',
-        [{ text: 'Okay' }]
+        "Insufficient permissions!",
+        "You need to grant location permissions to use this feature.",
+        [{ text: "Okay" }]
       );
       return;
     }
@@ -49,7 +57,7 @@ function HomeScreen() {
     const image = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       aspect: [16, 9],
-      quality: 0.5
+      quality: 0.5,
     });
 
     if (!image.canceled) {
@@ -58,11 +66,11 @@ function HomeScreen() {
       await getLocation();
       setTimeout(() => {
         const isTrash = Math.random() > 0.5;
-        setLabel(isTrash ? 'Trash' : 'Not Trash');
+        setLabel(isTrash ? "Trash" : "Not Trash");
         setLoading(false);
         setTimeout(() => {
           setPickedImage(null);
-          setLabel('');
+          setLabel("");
           setLocation(null);
         }, 10000); // Wait for 10 seconds before resetting the state
       }, 2000);
@@ -83,25 +91,27 @@ function HomeScreen() {
             ) : (
               <View style={styles.iconContainer}>
                 <Text style={styles.labelText}>
-                  {label === 'Trash' 
-                    ? `Thank you for your contribution because it is really trash. Your location: (${location?.coords.latitude}, ${location?.coords.longitude})` 
+                  {label === "Trash"
+                    ? `Thank you for your contribution because it is really trash. Your location: (${location?.coords.latitude}, ${location?.coords.longitude})`
                     : `Please check the image carefully because it is not trash.`}
                 </Text>
-                <Ionicons 
-                  name={label === 'Trash' ? 'checkmark-circle' : 'close-circle'} 
-                  size={30} 
-                  color={label === 'Trash' ? 'green' : 'red'} 
-                  style={styles.icon} 
+                <Ionicons
+                  name={label === "Trash" ? "checkmark-circle" : "close-circle"}
+                  size={30}
+                  color={label === "Trash" ? "green" : "red"}
+                  style={styles.icon}
                 />
               </View>
             )}
           </View>
         ) : (
           <View style={styles.takeContainer}>
-            
             <Text style={styles.cameraText}>Take photos if you see trash</Text>
-            <TouchableOpacity 
-              style={[styles.cameraButton, pressed && styles.cameraButtonPressed]} 
+            <TouchableOpacity
+              style={[
+                styles.cameraButton,
+                pressed && styles.cameraButtonPressed,
+              ]}
               onPressIn={() => setPressed(true)}
               onPressOut={() => setPressed(false)}
               onPress={handleTakeImage}
@@ -112,18 +122,25 @@ function HomeScreen() {
         )}
       </View>
       <View style={styles.tabContent}>
-        <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('LeaderBoard')}>
+        <TouchableOpacity
+          style={styles.tabButton}
+          onPress={() => navigation.navigate("LeaderBoard")}
+        >
           <Ionicons name="wine-outline" size={50} color="#0072ff" />
           <Text style={styles.text}>LeaderBoard</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('Water')}>
+        <TouchableOpacity
+          style={styles.tabButton}
+          onPress={() => navigation.navigate("Water")}
+        >
           <Ionicons name="water" size={50} color="#0072ff" />
           <Text style={styles.text}>Your water</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.footer}>
         <Text style={styles.footerText}>
-          Thank you for collaborating with AI and the world in waste and water management.
+          Thank you for collaborating with AI and the world in waste and water
+          management.
         </Text>
       </View>
     </View>
@@ -135,40 +152,40 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    display: 'flex',
-    backgroundColor: 'white',
-    gap:2
+    display: "flex",
+    backgroundColor: "white",
+    gap: 2,
   },
   container_header: {
     top: 12,
-    display: 'flex',
+    display: "flex",
     height: 100,
   },
   tabContent: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     padding: 10,
-    backgroundColor: '#ddd',
+    backgroundColor: "#ddd",
     marginHorizontal: 20,
     height: 250,
   },
   takeContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    width: '100%',
-    height: '100%',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
+    width: "100%",
+    height: "100%",
     borderRadius: 5,
   },
   photoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     padding: 15,
     margin: 20,
-    backgroundColor: '#ddd',
+    backgroundColor: "#ddd",
     height: 300,
-    width: '90%',
+    width: "90%",
   },
   wasteImage: {
     width: 100,
@@ -177,72 +194,72 @@ const styles = StyleSheet.create({
     marginTop: 150,
   },
   cameraButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   cameraButtonPressed: {
     opacity: 0.6,
   },
   cameraText: {
-    width: '60%',
+    width: "60%",
     fontSize: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   sustainabilityText: {
     fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginBottom: 10,
-    color: '#0072ff',
+    color: "#0072ff",
   },
   labelText: {
     fontSize: 12,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginTop: 10,
-    color: 'grey',
+    color: "grey",
   },
   imagePreview: {
-    width: '100%',
-    height: '76%',
+    width: "100%",
+    height: "76%",
     borderRadius: 3,
   },
   iconContainer: {
-    display: 'flex',
+    display: "flex",
   },
   icon: {
-    alignSelf: 'center',
+    alignSelf: "center",
     marginTop: 10,
   },
   resultContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   tabButton: {
-    display: 'flex',
-    alignItems: 'center',
-    backgroundColor: 'white',
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: "white",
     borderRadius: 10,
     padding: 20,
     flex: 1,
     margin: 10,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   text: {
     marginTop: 10,
     fontSize: 16,
-    color: '#0072af',
+    color: "#0072af",
   },
   footer: {
     padding: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin:20,
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 20,
   },
   footerText: {
     fontSize: 16,
-    color: 'grey',
-    textAlign: 'center',
-  }
+    color: "grey",
+    textAlign: "center",
+  },
 });
