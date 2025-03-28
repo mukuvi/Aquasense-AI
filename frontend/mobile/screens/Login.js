@@ -31,7 +31,7 @@ const Login = ({ navigation }) => {
 
   const handleLogin = async () => {
     if (!email || !password) {
-      Alert.alert("Erreur", "Veuillez remplir tous les champs.");
+      Alert.alert("Error", "Please fill in all fields.");
 
       return;
     }
@@ -51,10 +51,7 @@ const Login = ({ navigation }) => {
 
       navigation.navigate("HomeScreen", { userId });
     } catch (err) {
-      Alert.alert(
-        "Erreur",
-        "votre adresse email ou mots de passe est incorrect"
-      );
+      Alert.alert("Error", "Your email address or password is incorrect.");
       navigation.navigate("HomeScreen", { userId });
     }
   };
@@ -113,15 +110,16 @@ const Login = ({ navigation }) => {
             color="#007bff"
             style={styles.checkbox}
           />
-          <Text>Se souvenir de moi</Text>
+          <Text>Remember me</Text>
         </View>
 
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Connexion</Text>
+          <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
 
         <View style={styles.signupContainer}>
-          <Text style={styles.signupText}>Je n'ai pas de compte</Text>
+          <Text style={styles.signupText}>I don't have an account</Text>
+
           <TouchableOpacity onPress={handleSignup}>
             <Text
               style={[
