@@ -69,7 +69,7 @@ const Login = ({ navigation }) => {
             style={styles.inputIcon}
           />
           <TextInput
-            placeholder="Adresse Email"
+            placeholder="Email Address"
             value={email}
             onChangeText={(text) => setEmail(text)}
             style={[styles.input, isEmailFocused && styles.inputFocused]}
@@ -85,7 +85,7 @@ const Login = ({ navigation }) => {
             style={styles.inputIcon}
           />
           <TextInput
-            placeholder="Mot de passe"
+            placeholder="Password"
             value={password}
             onChangeText={(text) => setPassword(text)}
             secureTextEntry={!isPasswordShown}
