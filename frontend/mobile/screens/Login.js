@@ -127,7 +127,7 @@ const Login = ({ navigation }) => {
                 { color: "#0072ff", marginLeft: 5, fontWeight: "700" },
               ]}
             >
-              S'inscrire
+              Sign up
             </Text>
           </TouchableOpacity>
         </View>
