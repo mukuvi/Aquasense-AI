@@ -136,10 +136,10 @@ function PublicationScreen() {
           style={styles.publishContainer}
           onPress={handlePublish}
         >
-          <Text style={styles.publishText}>Que voulez-vous dire ?</Text>
+          <Text style={styles.publishText}>What do you want to say?</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.publishButton} onPress={() => {}}>
-          <Text style={styles.publishButtonText}>Publier</Text>
+          <Text style={styles.publishButtonText}>Publish</Text>
         </TouchableOpacity>
       </View>
       <ScrollView contentContainerStyle={styles.scrollView}>
