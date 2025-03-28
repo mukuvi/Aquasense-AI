@@ -278,7 +278,7 @@ const SearchScreen = () => {
       </View>
 
       {loading ? (
-        <Text style={styles.loadingText}>Chargement...</Text>
+        <Text style={styles.loadingText}>Loading...</Text>
       ) : (
         <>
           <FlatList
@@ -286,10 +286,10 @@ const SearchScreen = () => {
             renderItem={renderUserItem}
             keyExtractor={(item) => item.id.toString()}
             ListHeaderComponent={
-              <Text style={styles.sectionHeader}>Utilisateurs</Text>
+              <Text style={styles.sectionHeader}>Users</Text>
             }
             ListEmptyComponent={
-              <Text style={styles.emptyText}>Aucun utilisateur trouvé</Text>
+              <Text style={styles.emptyText}>No users found</Text>
             }
           />
 
@@ -298,7 +298,7 @@ const SearchScreen = () => {
               style={styles.viewMoreButton}
               onPress={() => setShowAllUsers(true)}
             >
-              <Text style={styles.viewMoreText}>Voir plus</Text>
+              <Text style={styles.viewMoreText}>See more</Text>
             </TouchableOpacity>
           )}
 
