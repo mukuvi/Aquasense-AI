@@ -1,10 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Modal, Alert, Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; 
-import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation , useRoute} from '@react-navigation/core';
-import { SERVER_IP } from './constants'; 
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Modal,
+  Alert,
+  Image,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation, useRoute } from "@react-navigation/core";
+import { SERVER_IP } from "./constants";
 
 function NavBar({ activeTab, onChangeTab }) {
   const [showModal, setShowModal] = useState(false);
@@ -14,13 +22,16 @@ function NavBar({ activeTab, onChangeTab }) {
   useEffect(() => {
     const fetchUserId = async () => {
       try {
-        const userData = await AsyncStorage.getItem('userData');
+        const userData = await AsyncStorage.getItem("userData");
         if (userData) {
           const { id } = JSON.parse(userData);
           setUserId(parseInt(id));
         }
       } catch (error) {
-        console.error('Erreur lors de la récupération de l\'ID utilisateur depuis AsyncStorage:', error);
+        console.error(
+          "Erreur lors de la récupération de l'ID utilisateur depuis AsyncStorage:",
+          error
+        );
       }
     };
 
@@ -34,9 +45,9 @@ function NavBar({ activeTab, onChangeTab }) {
       [
         {
           text: "Non",
-          style: "cancel"
+          style: "cancel",
         },
-        { text: "Oui", onPress: () => ConfirmLogout() }
+        { text: "Oui", onPress: () => ConfirmLogout() },
       ],
       { cancelable: false }
     );
@@ -44,8 +55,8 @@ function NavBar({ activeTab, onChangeTab }) {
 
   const handleAdd = () => {
     try {
-      navigation.navigate('AddScreen', { userId });
-      console.log('Navigating to AddScreen');
+      navigation.navigate("AddScreen", { userId });
+      console.log("Navigating to AddScreen");
     } catch (err) {
       console.log(err);
     }
@@ -54,10 +65,10 @@ function NavBar({ activeTab, onChangeTab }) {
   const ConfirmLogout = async () => {
     try {
       await axios.put(`${SERVER_IP}/api/users/logout/${userId}/`);
-      await AsyncStorage.removeItem('userData');
-      navigation.navigate('Welcome');
+      await AsyncStorage.removeItem("userData");
+      navigation.navigate("Welcome");
     } catch (error) {
-      console.error('Erreur lors du chargement des données :', error);
+      console.error("Erreur lors du chargement des données :", error);
     }
   };
 
@@ -65,15 +76,24 @@ function NavBar({ activeTab, onChangeTab }) {
     <View style={styles.navBar}>
       <View style={styles.leftContainer}>
         <View style={styles.aquaSenseContainer}>
-          <Image source={require('../assets/logo.jpeg')} style={styles.aquaSenseImage} />
+          <Image
+            source={require("../assets/logo.jpeg")}
+            style={styles.aquaSenseImage}
+          />
           <Text style={styles.aquaSenseText}>AQUASENSE AI</Text>
         </View>
       </View>
       <View style={styles.rightContainer}>
-        <TouchableOpacity style={[styles.button, styles.addButton]} onPress={handleAdd}>
+        <TouchableOpacity
+          style={[styles.button, styles.addButton]}
+          onPress={handleAdd}
+        >
           <Ionicons name="add" size={23} color="#333" />
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.logoutButton]} onPress={handleLogout}>
+        <TouchableOpacity
+          style={[styles.button, styles.logoutButton]}
+          onPress={handleLogout}
+        >
           <Ionicons name="log-out-outline" size={23} color="#333" />
         </TouchableOpacity>
       </View>
@@ -83,28 +103,28 @@ function NavBar({ activeTab, onChangeTab }) {
 
 const styles = StyleSheet.create({
   navBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingBottom: 5,
     paddingHorizontal: 20,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
   },
   leftContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   rightContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   aquaSenseContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     padding: 20,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   aquaSenseImage: {
     width: 50, // Adjust the size as needed
@@ -113,47 +133,47 @@ const styles = StyleSheet.create({
   },
   aquaSenseText: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color:"#0072ff"
+    fontWeight: "bold",
+    color: "#0072ff",
   },
   button: {
     padding: 10,
   },
   addButton: {
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
     borderRadius: 20,
     marginRight: 13,
   },
   logoutButton: {
     marginRight: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
     borderRadius: 20,
   },
   modalContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    padding:10
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    padding: 10,
   },
   modalContent: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     paddingVertical: 40,
     borderRadius: 10,
-    paddingHorizontal:20
+    paddingHorizontal: 20,
   },
   modalText: {
     fontSize: 16,
     marginBottom: 20,
   },
   modalButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   modalButtonText: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
+    fontWeight: "bold",
+    color: "#333",
   },
 });
 
