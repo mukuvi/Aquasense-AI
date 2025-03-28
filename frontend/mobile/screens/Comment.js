@@ -230,7 +230,7 @@ function Comment() {
             <View style={styles.commentsContainer}>
               <View style={styles.commentsNameTitle}>
                 <Text style={styles.commentsName}>
-                  {comment.sender["nom"]}{" "}
+                  {comment.sender["name"]}{" "}
                 </Text>
                 <Text style={styles.timeElapsed}>{comment.time_elapsed}</Text>
               </View>
