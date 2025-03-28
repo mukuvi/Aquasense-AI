@@ -108,7 +108,7 @@ const SearchScreen = () => {
         setPublicationList(response.data.partages);
       }
     } catch (error) {
-      console.error("Erreur lors de la recherche :", error);
+      console.error("Error during search:", error);
     } finally {
       setLoading(false);
     }
@@ -149,10 +149,7 @@ const SearchScreen = () => {
         });
       }
     } catch (error) {
-      console.error(
-        "Erreur lors de la récupération du profil utilisateur :",
-        error
-      );
+      console.error("Error retrieving user profile:", error);
     }
   };
 
