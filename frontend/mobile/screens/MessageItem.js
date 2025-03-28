@@ -1,6 +1,13 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const MessageItem = ({ conversation, onDelete }) => {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -12,11 +19,11 @@ const MessageItem = ({ conversation, onDelete }) => {
 
   const confirmDelete = () => {
     setIsDeleting(true);
-    // Simulation de la suppression du message
+    // Simulating message deletion
     setTimeout(() => {
       setIsDeleting(false);
       setIsDeleteVisible(false);
-      onDelete(); // Appeler la fonction de suppression du parent
+      onDelete(); // Call the parent delete function
     }, 2000);
   };
 
@@ -51,16 +58,16 @@ const MessageItem = ({ conversation, onDelete }) => {
 
 const styles = StyleSheet.create({
   messageItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: "#ccc",
   },
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   profileImage: {
     width: 50,
@@ -72,15 +79,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   name: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 16,
   },
   messageText: {
-    color: '#888',
+    color: "#888",
   },
   deleteContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
 
