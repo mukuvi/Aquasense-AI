@@ -163,7 +163,7 @@ const Signup = ({ navigation }) => {
           </TouchableOpacity>
         )}
         <View style={styles.signupContainer}>
-          <Text style={styles.signupText}>J'ai déjà un compte</Text>
+          <Text style={styles.signupText}>I already have an account</Text>
           <TouchableOpacity onPress={handleLogin}>
             <Text
               style={[
@@ -171,7 +171,7 @@ const Signup = ({ navigation }) => {
                 { color: "#0072ff", marginLeft: 5, fontWeight: "700" },
               ]}
             >
-              Se connecter
+              Log in
             </Text>
           </TouchableOpacity>
         </View>
