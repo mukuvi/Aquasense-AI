@@ -74,7 +74,7 @@ function Comment() {
         updatePublicationLike(publicationId, isLiked);
       })
       .catch((error) => {
-        console.error("Erreur lors de la mise à jour du like :", error);
+        console.error("Error updating like:", error);
       });
   };
 
@@ -91,8 +91,9 @@ function Comment() {
     try {
       const formData = new FormData();
       formData.append("sender", userId);
-      formData.append("contenu", newComment);
-      formData.append("partage", publicationId);
+      formData.append("content", newComment);
+      formData.append("share", publicationId);
+
       await axios.post(`${SERVER_IP}/api/partage/comments/new/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -100,9 +101,9 @@ function Comment() {
       });
       setNewComment("");
       Keyboard.dismiss();
-      alert("commentaire ajouté avec succès");
+      alert("Comment added successfully");
     } catch {
-      alert("erreur");
+      alert("Error");
     }
   };
 
@@ -151,7 +152,7 @@ function Comment() {
               source={{ uri: publication.sender["profile_url"] }}
               style={styles.personImage}
             />
-            <Text style={styles.personName}>{publication.sender["nom"]}</Text>
+            <Text style={styles.personName}>{publication.sender["name"]}</Text>
           </View>
 
           {publication.contenu && (
@@ -212,7 +213,7 @@ function Comment() {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.reaction}
-              onPress={() => console.log("Partager")}
+              onPress={() => console.log("share")}
             >
               <FontAwesome name="share" size={20} color="blue" />
             </TouchableOpacity>
